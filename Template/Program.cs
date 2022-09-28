@@ -1,8 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Tamplate.data.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<TamplateContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
 
 var app = builder.Build();
 
